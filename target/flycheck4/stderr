@@ -1,0 +1,100 @@
+   0.091985542s  INFO prepare_target{force=false package_id=uvcore v0.1.0 (/Users/fredbook/Code/uVector) target="uvcore"}: cargo::core::compiler::fingerprint: fingerprint error for uvcore v0.1.0 (/Users/fredbook/Code/uVector)/Check { test: false }/TargetInner { ..: lib_target("uvcore", ["lib"], "/Users/fredbook/Code/uVector/src/lib.rs", Edition2021) }
+   0.092033458s  INFO prepare_target{force=false package_id=uvcore v0.1.0 (/Users/fredbook/Code/uVector) target="uvcore"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/fredbook/Code/uVector/target/debug/.fingerprint/uvcore-0e9815a3617a7e1c/lib-uvcore`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: cargo_util::paths::read_bytes
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::main
+  13: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  14: std::rt::lang_start::<()>::{closure#0}
+  15: std::rt::lang_start_internal
+  16: _main
+   0.117191042s  INFO prepare_target{force=false package_id=uvcore v0.1.0 (/Users/fredbook/Code/uVector) target="uvcore"}: cargo::core::compiler::fingerprint: fingerprint error for uvcore v0.1.0 (/Users/fredbook/Code/uVector)/Check { test: true }/TargetInner { ..: lib_target("uvcore", ["lib"], "/Users/fredbook/Code/uVector/src/lib.rs", Edition2021) }
+   0.117203250s  INFO prepare_target{force=false package_id=uvcore v0.1.0 (/Users/fredbook/Code/uVector) target="uvcore"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/fredbook/Code/uVector/target/debug/.fingerprint/uvcore-cfb0a33ef96b6139/test-lib-uvcore`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: cargo_util::paths::read_bytes
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::main
+  13: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  14: std::rt::lang_start::<()>::{closure#0}
+  15: std::rt::lang_start_internal
+  16: _main
+   0.117666250s  INFO prepare_target{force=false package_id=uvcore v0.1.0 (/Users/fredbook/Code/uVector) target="uvcore"}: cargo::core::compiler::fingerprint: fingerprint error for uvcore v0.1.0 (/Users/fredbook/Code/uVector)/Check { test: false }/TargetInner { name: "uvcore", doc: true, ..: with_path("/Users/fredbook/Code/uVector/src/main.rs", Edition2021) }
+   0.117671417s  INFO prepare_target{force=false package_id=uvcore v0.1.0 (/Users/fredbook/Code/uVector) target="uvcore"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/fredbook/Code/uVector/target/debug/.fingerprint/uvcore-63edccf4f15dedf2/bin-uvcore`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: cargo_util::paths::read_bytes
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::main
+  13: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  14: std::rt::lang_start::<()>::{closure#0}
+  15: std::rt::lang_start_internal
+  16: _main
+   0.117986708s  INFO prepare_target{force=false package_id=uvcore v0.1.0 (/Users/fredbook/Code/uVector) target="uvcore"}: cargo::core::compiler::fingerprint: fingerprint error for uvcore v0.1.0 (/Users/fredbook/Code/uVector)/Check { test: true }/TargetInner { name: "uvcore", doc: true, ..: with_path("/Users/fredbook/Code/uVector/src/main.rs", Edition2021) }
+   0.117991958s  INFO prepare_target{force=false package_id=uvcore v0.1.0 (/Users/fredbook/Code/uVector) target="uvcore"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/fredbook/Code/uVector/target/debug/.fingerprint/uvcore-2cb590030e418f9d/test-bin-uvcore`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: cargo_util::paths::read_bytes
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   4: cargo::core::compiler::fingerprint::prepare_target
+   5: cargo::core::compiler::compile
+   6: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   7: cargo::ops::cargo_compile::compile_ws
+   8: cargo::ops::cargo_compile::compile_with_exec
+   9: cargo::ops::cargo_compile::compile
+  10: cargo::commands::check::exec
+  11: <cargo::cli::Exec>::exec
+  12: cargo::main
+  13: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  14: std::rt::lang_start::<()>::{closure#0}
+  15: std::rt::lang_start_internal
+  16: _main
+    Checking uvcore v0.1.0 (/Users/fredbook/Code/uVector)
+error: could not compile `uvcore` (lib test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `uvcore` (lib) due to 1 previous error
