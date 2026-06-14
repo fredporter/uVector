@@ -5,7 +5,7 @@
 use crate::parser::SvgDocument;
 
 /// Convert SVG to CELX (grid-based sprite format)
-pub fn to_celx(doc: &SvgDocument) -> anyhow::Result<String> {
+pub fn to_celx(doc: &SvgDocument<'_>) -> anyhow::Result<String> {
     let mut output = String::new();
 
     output.push_str(&format!("CELX {} {}\n", doc.width as u32, doc.height as u32));
@@ -40,7 +40,7 @@ pub fn to_celx(doc: &SvgDocument) -> anyhow::Result<String> {
 }
 
 /// Convert SVG to ASCII/Teletext art
-pub fn to_ascii(doc: &SvgDocument) -> anyhow::Result<String> {
+pub fn to_ascii(doc: &SvgDocument<'_>) -> anyhow::Result<String> {
     let width = doc.width as usize;
     let height = doc.height as usize;
 
@@ -80,7 +80,7 @@ pub fn to_ascii(doc: &SvgDocument) -> anyhow::Result<String> {
 }
 
 /// Generate a semantic description of the SVG content
-pub fn describe(doc: &SvgDocument) -> anyhow::Result<String> {
+pub fn describe(doc: &SvgDocument<'_>) -> anyhow::Result<String> {
     let mut elements = Vec::new();
 
     for node in doc.doc.root_element().descendants() {

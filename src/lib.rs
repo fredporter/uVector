@@ -16,6 +16,7 @@
 pub mod parser;
 pub mod render;
 pub mod formats;
+pub mod generate;
 
 /// The current UVcore version
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");

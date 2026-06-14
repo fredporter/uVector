@@ -6,18 +6,18 @@
 use roxmltree::Document;
 
 /// A parsed SVG document with extracted metadata
-#[derive(Debug, Clone)]
-pub struct SvgDocument {
+#[derive(Debug)]
+pub struct SvgDocument<'a> {
     /// Width in user units (from viewBox or width attr)
     pub width: f64,
     /// Height in user units
     pub height: f64,
     /// Raw XML document for detailed traversal
-    pub doc: Document,
+    pub doc: Document<'a>,
 }
 
 /// Parse an SVG string into an SvgDocument
-pub fn parse_svg(svg_content: &str) -> anyhow::Result<SvgDocument> {
+pub fn parse_svg(svg_content: &str) -> anyhow::Result<SvgDocument<'_>> {
     let doc = Document::parse(svg_content)?;
 
     let root = doc.root_element();
