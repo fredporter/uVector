@@ -1,6 +1,6 @@
 [package]
 name = "uvcore"
-version = "0.1.0"
+version = "0.1.0-dev"
 edition = "2021"
 description = "Universal Vector Core — SVG→everything conversion engine for uCode3"
 authors = ["OkAgentDigital"]
