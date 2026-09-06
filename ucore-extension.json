@@ -1,0 +1,9 @@
+{
+  "id": "uvector",
+  "name": "uVector Universal Vector Core",
+  "kind": "tool",
+  "version": "0.1.0",
+  "description": "Image intelligence and vector engine bridging Nano Banana / Imagen 3 with ProseUI and GridUI",
+  "optional": true,
+  "api_prefix": "/api/vector"
+}
