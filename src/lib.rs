@@ -17,6 +17,9 @@ pub mod parser;
 pub mod render;
 pub mod formats;
 pub mod generate;
+pub mod palettes;
+pub mod char_map;
+pub mod trace;
 
 /// The current UVcore version
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");

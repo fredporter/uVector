@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "uVector Canonical Palette Registry",
+  "version": "1.0.0",
+  "source_of_truth": "uVector",
+  "description": "Canonical bundled color palettes and customization definitions for uDos ecosystem. uCore and uCode consume base presets only.",
+  "palettes": {
+    "teletext_ceefax": {
+      "id": "teletext_ceefax",
+      "name": "Teletext Ceefax",
+      "description": "8-color broadcast teletext standard palette",
+      "base_preset": true,
+      "colors": [
+        { "name": "black", "hex": "#000000", "ansi": 30 },
+        { "name": "red", "hex": "#E6193C", "ansi": 31 },
+        { "name": "green", "hex": "#3FB950", "ansi": 32 },
+        { "name": "yellow", "hex": "#F2CC60", "ansi": 33 },
+        { "name": "blue", "hex": "#58A6FF", "ansi": 34 },
+        { "name": "magenta", "hex": "#BC8CFF", "ansi": 35 },
+        { "name": "cyan", "hex": "#39C5CF", "ansi": 36 },
+        { "name": "white", "hex": "#FFFFFF", "ansi": 37 }
+      ]
+    },
+    "architectural_blueprint": {
+      "id": "architectural_blueprint",
+      "name": "Architectural Blueprint",
+      "description": "Crisp white and electric cyan drafting linework on deep Prussian blue substrate",
+      "base_preset": true,
+      "colors": [
+        { "name": "prussian_blue", "hex": "#0A2342", "role": "substrate" },
+        { "name": "electric_cyan", "hex": "#00E5FF", "role": "primary_line" },
+        { "name": "pale_cyan", "hex": "#A6F0FF", "role": "secondary_line" },
+        { "name": "drafting_white", "hex": "#FFFFFF", "role": "highlight" }
+      ]
+    },
+    "editorial_linocut": {
+      "id": "editorial_linocut",
+      "name": "Editorial Linocut Paper",
+      "description": "Black woodcut ink and stipple on archival cream paper",
+      "base_preset": true,
+      "colors": [
+        { "name": "archival_cream", "hex": "#FAF8F5", "role": "substrate" },
+        { "name": "carbon_ink", "hex": "#111111", "role": "primary_ink" },
+        { "name": "charcoal_stipple", "hex": "#2D3139", "role": "shade" },
+        { "name": "pure_white", "hex": "#FFFDF8", "role": "substrate_highlight" }
+      ]
+    },
+    "pixel_16": {
+      "id": "pixel_16",
+      "name": "16-Color Pixel Grid",
+      "description": "Classic 16-color game console palette",
+      "base_preset": true,
+      "colors": [
+        { "name": "black", "hex": "#141013" },
+        { "name": "deep_blue", "hex": "#2C1B4D" },
+        { "name": "crimson", "hex": "#841C3C" },
+        { "name": "dark_green", "hex": "#29462A" },
+        { "name": "brown", "hex": "#73432A" },
+        { "name": "slate", "hex": "#4C5464" },
+        { "name": "light_gray", "hex": "#9BA3A9" },
+        { "name": "white", "hex": "#FFFFFF" },
+        { "name": "red", "hex": "#E03C3C" },
+        { "name": "orange", "hex": "#E8732A" },
+        { "name": "yellow", "hex": "#F4B41B" },
+        { "name": "lime", "hex": "#56C639" },
+        { "name": "sky_blue", "hex": "#3CB0E8" },
+        { "name": "indigo", "hex": "#6850A4" },
+        { "name": "pink", "hex": "#E85E8C" },
+        { "name": "peach", "hex": "#F4B896" }
+      ]
+    },
+    "minimal_line": {
+      "id": "minimal_line",
+      "name": "Minimal Technical Line Art",
+      "description": "Monochrome black geometric outlines on transparent or white background",
+      "base_preset": true,
+      "colors": [
+        { "name": "ink", "hex": "#000000", "role": "line" },
+        { "name": "paper", "hex": "#FFFFFF", "role": "background" },
+        { "name": "guideline", "hex": "#888888", "role": "annotation" }
+      ]
+    },
+    "gameboy_classic": {
+      "id": "gameboy_classic",
+      "name": "Game Boy 4-Shade",
+      "description": "Iconic monochrome 4-shade greenish LCD palette",
+      "base_preset": false,
+      "colors": [
+        { "name": "darkest_green", "hex": "#0F380F" },
+        { "name": "dark_green", "hex": "#306230" },
+        { "name": "light_green", "hex": "#8BAC0F" },
+        { "name": "lightest_green", "hex": "#9BBC0F" }
+      ]
+    },
+    "pico_8": {
+      "id": "pico_8",
+      "name": "PICO-8 Palette",
+      "description": "Standard 16-color fantasy console palette",
+      "base_preset": false,
+      "colors": [
+        { "name": "black", "hex": "#000000" },
+        { "name": "dark_blue", "hex": "#1D2B53" },
+        { "name": "dark_purple", "hex": "#7E2553" },
+        { "name": "dark_green", "hex": "#008751" },
+        { "name": "brown", "hex": "#AB5236" },
+        { "name": "dark_gray", "hex": "#5F574F" },
+        { "name": "light_gray", "hex": "#C2C3C7" },
+        { "name": "white", "hex": "#FFF1E8" },
+        { "name": "red", "hex": "#FF004D" },
+        { "name": "orange", "hex": "#FFA300" },
+        { "name": "yellow", "hex": "#FFEC27" },
+        { "name": "green", "hex": "#00E436" },
+        { "name": "blue", "hex": "#29ADFF" },
+        { "name": "lavender", "hex": "#83769C" },
+        { "name": "pink", "hex": "#FF77A8" },
+        { "name": "peach", "hex": "#FFCCAA" }
+      ]
+    },
+    "cga_mode1": {
+      "id": "cga_mode1",
+      "name": "CGA Mode 1 (High Intensity)",
+      "description": "Standard 4-color CGA graphics palette 1",
+      "base_preset": false,
+      "colors": [
+        { "name": "black", "hex": "#000000" },
+        { "name": "cyan", "hex": "#55FFFF" },
+        { "name": "magenta", "hex": "#FF55FF" },
+        { "name": "white", "hex": "#FFFFFF" }
+      ]
+    }
+  }
+}

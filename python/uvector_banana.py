@@ -51,17 +51,6 @@ STYLE_PRESETS: Dict[str, BananaStyle] = {
             "precise geometric orthographic projections, high precision."
         ),
     ),
-    "mono_amber": BananaStyle(
-        key="mono_amber",
-        name="Amber CRT Phosphor",
-        description="Monochrome warm amber phosphor CRT display",
-        default_aspect_ratio="4:3",
-        prompt_suffix=(
-            "Render as an authentic vintage monochrome amber CRT monitor. "
-            "Glowing amber phosphor (#ffb000, #ff8000) on deep black (#120b00) background. "
-            "Subtle horizontal scanlines, curved cathode tube vignette, high contrast retro terminal."
-        ),
-    ),
     "mono_paper": BananaStyle(
         key="mono_paper",
         name="Editorial Linocut Paper",
@@ -83,7 +72,31 @@ STYLE_PRESETS: Dict[str, BananaStyle] = {
             "dithered shading, limited nostalgic retro console palette, clean silhouette."
         ),
     ),
+    "line_art": BananaStyle(
+        key="line_art",
+        name="Technical Line Art",
+        description="Clean monochrome black vector geometry with callouts and precision guides",
+        default_aspect_ratio="16:9",
+        prompt_suffix=(
+            "Render as clean vector technical line art. High precision black outlines on white "
+            "background, geometric dimension guides, isometric orthographic clarity, clean topology."
+        ),
+    ),
 }
+
+
+def load_canonical_palettes() -> Dict[str, Any]:
+    """Load canonical palette registry from uVector (source of truth)."""
+    palette_file = os.path.join(os.path.dirname(__file__), "..", "palettes", "canonical_palettes.json")
+    if os.path.exists(palette_file):
+        with open(palette_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {"palettes": {}}
+
+
+def get_base_presets() -> Dict[str, BananaStyle]:
+    """Return base style presets (for uCore and uCode consumption)."""
+    return STYLE_PRESETS
 
 
 def build_banana_prompt(
