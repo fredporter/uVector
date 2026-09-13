@@ -29,6 +29,14 @@ struct Cli {
     #[arg(short, long)]
     output: Option<PathBuf>,
 
+    /// Canonical palette ID (for gif, teletext, celx quantization)
+    #[arg(long)]
+    palette: Option<String>,
+
+    /// Frame delay in milliseconds for GIF animations (default: 100)
+    #[arg(long, default_value_t = 100)]
+    delay: u32,
+
     /// Dump canonical palette registry as JSON
     #[arg(long)]
     palettes: bool,
@@ -77,8 +85,22 @@ fn main() -> anyhow::Result<()> {
             let teletext = uvcore::formats::to_teletext(&doc)?;
             print!("{}", teletext);
         }
+        "gif" => {
+            let options = uvcore::animate::GifAnimationOptions {
+                delay_ms: cli.delay,
+                repeat_infinite: true,
+                palette_id: cli.palette.clone(),
+            };
+            let gif_data = uvcore::animate::svgs_to_gif(&[&svg_content], &options)?;
+            if let Some(path) = &cli.output {
+                std::fs::write(path, &gif_data)?;
+                println!("Wrote GIF to {}", path.display());
+            } else {
+                println!("GIF data ({} bytes)", gif_data.len());
+            }
+        }
         _ => {
-            anyhow::bail!("Unknown format: {}. Use: celx, ascii, describe, png, teletext", cli.format);
+            anyhow::bail!("Unknown format: {}. Use: celx, ascii, describe, png, teletext, gif", cli.format);
         }
     }
 
