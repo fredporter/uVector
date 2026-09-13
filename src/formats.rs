@@ -128,3 +128,39 @@ pub fn describe(doc: &SvgDocument<'_>) -> anyhow::Result<String> {
 
     Ok(output)
 }
+
+/// Convert SVG to 40×25 Teletext G1 mosaic character grid
+pub fn to_teletext(doc: &SvgDocument<'_>) -> anyhow::Result<String> {
+    let pixmap = crate::render::to_pixmap(doc)?;
+    let w = pixmap.width() as usize;
+    let h = pixmap.height() as usize;
+    let data = pixmap.data();
+
+    // Convert RGBA to luminance grayscale (Rec. 601: 0.299 R + 0.587 G + 0.114 B)
+    let mut grayscale = Vec::with_capacity(w * h);
+    for chunk in data.chunks_exact(4) {
+        let r = chunk[0] as f32;
+        let g = chunk[1] as f32;
+        let b = chunk[2] as f32;
+        let a = chunk[3] as f32 / 255.0;
+        let lum = ((0.299 * r + 0.587 * g + 0.114 * b) * a) as u8;
+        grayscale.push(lum);
+    }
+
+    let screen = crate::char_map::quantize_luminance_to_teletext(&grayscale, w, h, 128);
+    Ok(screen.to_plain_text())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_to_teletext() {
+        let svg = r##"<svg xmlns="http://www.w3.org/2000/svg" width="80" height="50"><rect x="0" y="0" width="80" height="50" fill="#ffffff"/></svg>"##;
+        let doc = crate::parser::parse_svg(svg).unwrap();
+        let teletext = to_teletext(&doc).unwrap();
+        assert_eq!(teletext.lines().count(), 25);
+        assert!(teletext.contains('█'));
+    }
+}
