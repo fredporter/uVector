@@ -18,7 +18,8 @@ use std::path::PathBuf;
 #[command(name = "uvcore", version, about = "Universal Vector Core — SVG→everything")]
 struct Cli {
     /// Input SVG file path
-    input: PathBuf,
+    #[arg(required_unless_present = "palettes")]
+    input: Option<PathBuf>,
 
     /// Output format
     #[arg(short, long, default_value = "describe")]
@@ -27,13 +28,25 @@ struct Cli {
     /// Output file path (optional)
     #[arg(short, long)]
     output: Option<PathBuf>,
+
+    /// Dump canonical palette registry as JSON
+    #[arg(long)]
+    palettes: bool,
 }
 
 fn main() -> anyhow::Result<()> {
     let cli = Cli::parse();
 
+    if cli.palettes {
+        let reg = uvcore::palettes::PaletteRegistry::load();
+        println!("{}", serde_json::to_string_pretty(&reg)?);
+        return Ok(());
+    }
+
+    let input_path = cli.input.ok_or_else(|| anyhow::anyhow!("Input file required"))?;
+
     // Read SVG
-    let svg_content = std::fs::read_to_string(&cli.input)?;
+    let svg_content = std::fs::read_to_string(&input_path)?;
 
     // Parse SVG
     let doc = uvcore::parser::parse_svg(&svg_content)?;
