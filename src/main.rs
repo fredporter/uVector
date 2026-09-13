@@ -54,11 +54,11 @@ fn main() -> anyhow::Result<()> {
     match cli.format.as_str() {
         "celx" => {
             let celx = uvcore::formats::to_celx(&doc)?;
-            println!("{}", celx);
+            print!("{}", celx);
         }
         "ascii" => {
             let ascii = uvcore::formats::to_ascii(&doc)?;
-            println!("{}", ascii);
+            print!("{}", ascii);
         }
         "describe" => {
             let desc = uvcore::formats::describe(&doc)?;
@@ -73,8 +73,12 @@ fn main() -> anyhow::Result<()> {
                 println!("PNG data ({} bytes)", png_data.len());
             }
         }
+        "teletext" => {
+            let teletext = uvcore::formats::to_teletext(&doc)?;
+            print!("{}", teletext);
+        }
         _ => {
-            anyhow::bail!("Unknown format: {}. Use: celx, ascii, describe, png", cli.format);
+            anyhow::bail!("Unknown format: {}. Use: celx, ascii, describe, png, teletext", cli.format);
         }
     }
 

@@ -6,8 +6,8 @@
 use crate::parser::SvgDocument;
 use tiny_skia::*;
 
-/// Render SVG to PNG bytes with full shape rendering
-pub fn to_png(doc: &SvgDocument<'_>) -> anyhow::Result<Vec<u8>> {
+/// Render SVG to Pixmap with full shape rendering
+pub fn to_pixmap(doc: &SvgDocument<'_>) -> anyhow::Result<Pixmap> {
     let width = (doc.width as u32).max(1);
     let height = (doc.height as u32).max(1);
 
@@ -21,7 +21,12 @@ pub fn to_png(doc: &SvgDocument<'_>) -> anyhow::Result<Vec<u8>> {
     // Render all SVG elements
     render_svg_elements(&doc, &mut pixmap)?;
 
-    // Encode to PNG
+    Ok(pixmap)
+}
+
+/// Render SVG to PNG bytes with full shape rendering
+pub fn to_png(doc: &SvgDocument<'_>) -> anyhow::Result<Vec<u8>> {
+    let pixmap = to_pixmap(doc)?;
     let png_data = pixmap.encode_png()?;
     Ok(png_data)
 }
