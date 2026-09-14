@@ -21,6 +21,7 @@ pub mod palettes;
 pub mod char_map;
 pub mod trace;
 pub mod animate;
+pub mod bob;
 
 /// The current UVcore version
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");

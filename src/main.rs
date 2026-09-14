@@ -37,6 +37,14 @@ struct Cli {
     #[arg(long, default_value_t = 100)]
     delay: u32,
 
+    /// Width in dots (1 dot = 4x4 px) for BOB blitter output
+    #[arg(long)]
+    width_dots: Option<u32>,
+
+    /// Height in dots (1 dot = 4x4 px) for BOB blitter output
+    #[arg(long)]
+    height_dots: Option<u32>,
+
     /// Dump canonical palette registry as JSON
     #[arg(long)]
     palettes: bool,
@@ -85,6 +93,20 @@ fn main() -> anyhow::Result<()> {
             let teletext = uvcore::formats::to_teletext(&doc)?;
             print!("{}", teletext);
         }
+        "bob" => {
+            let bob_json = uvcore::formats::to_bob(
+                &doc,
+                cli.palette.as_deref(),
+                cli.width_dots,
+                cli.height_dots,
+            )?;
+            if let Some(path) = &cli.output {
+                std::fs::write(path, &bob_json)?;
+                println!("Wrote BOB definition to {}", path.display());
+            } else {
+                println!("{}", bob_json);
+            }
+        }
         "gif" => {
             let options = uvcore::animate::GifAnimationOptions {
                 delay_ms: cli.delay,
@@ -100,7 +122,7 @@ fn main() -> anyhow::Result<()> {
             }
         }
         _ => {
-            anyhow::bail!("Unknown format: {}. Use: celx, ascii, describe, png, teletext, gif", cli.format);
+            anyhow::bail!("Unknown format: {}. Use: celx, ascii, describe, png, teletext, bob, gif", cli.format);
         }
     }
 
