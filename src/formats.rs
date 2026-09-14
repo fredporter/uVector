@@ -151,6 +151,17 @@ pub fn to_teletext(doc: &SvgDocument<'_>) -> anyhow::Result<String> {
     Ok(screen.to_plain_text())
 }
 
+/// Convert SVG to GridCore BOB JSON on the 4×4 dot lattice
+pub fn to_bob(
+    doc: &SvgDocument<'_>,
+    palette_id: Option<&str>,
+    width_dots: Option<u32>,
+    height_dots: Option<u32>,
+) -> anyhow::Result<String> {
+    let bob = crate::bob::svg_to_bob(doc, "svg_bob", "SVG BOB", palette_id, width_dots, height_dots)?;
+    Ok(serde_json::to_string_pretty(&bob)?)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

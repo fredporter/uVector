@@ -24,6 +24,21 @@ pub fn to_pixmap(doc: &SvgDocument<'_>) -> anyhow::Result<Pixmap> {
     Ok(pixmap)
 }
 
+/// Render SVG to Pixmap preserving alpha transparency (unpainted areas remain transparent)
+pub fn to_pixmap_transparent(doc: &SvgDocument<'_>) -> anyhow::Result<Pixmap> {
+    let width = (doc.width as u32).max(1);
+    let height = (doc.height as u32).max(1);
+
+    // Create an uninitialized (zeroed/transparent) pixmap
+    let mut pixmap = Pixmap::new(width, height)
+        .ok_or_else(|| anyhow::anyhow!("Failed to create pixmap"))?;
+
+    // Render all SVG elements directly preserving transparency
+    render_svg_elements(&doc, &mut pixmap)?;
+
+    Ok(pixmap)
+}
+
 /// Render SVG to PNG bytes with full shape rendering
 pub fn to_png(doc: &SvgDocument<'_>) -> anyhow::Result<Vec<u8>> {
     let pixmap = to_pixmap(doc)?;
